@@ -1,0 +1,19 @@
+.itemContact{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    list-style: none;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.buttonItem{ 
+    margin-right: 150px;   
+    font-size: 16px;
+    background-color: red;
+    border-radius: 4px;
+    border-color: rgb(237, 8, 123);
+    color: white;
+    box-shadow: 3px 3px 5px grey;
+    cursor: pointer;
+}
+
