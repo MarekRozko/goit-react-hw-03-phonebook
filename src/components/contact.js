@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from 'nanoid';
 
 const contacts = [
     { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },

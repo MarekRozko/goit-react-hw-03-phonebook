@@ -3,14 +3,14 @@ import { nanoid } from 'nanoid';
 import GetContactForm from "./GetContactForm/GetContactForm";
 import ContactList from "./ContactList/ContactList";
 import FilterContact from "./FilterContact/FilterContact";
-import contacts from './contacts';
+// import contacts from './contact';
 import styles from "../components/app.module.css";
 
 
  export class App extends Component {
 
     state = {
-        contacts: [...contacts],
+        contacts: [],
         filter: "",
     }
 
@@ -69,6 +69,22 @@ import styles from "../components/app.module.css";
 
         return result;
     }
+   
+   componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+   
 
     render() {
         const {addContact, removeContact, handleFilter} = this;
