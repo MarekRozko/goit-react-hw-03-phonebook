@@ -1,38 +1,46 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
+import initinalState from "./initinalState";
 import styles from  "../GetContactForm/getContactForm.module.css";
 
 export class GetContactForm extends Component{
-  state = {
-    name: '',
-    number: '',
-  }
 
-changeContact = event => {
-  const { name, value } = event.currentTarget;
-  this.setState({[name]: value})
-}
-contactSubmit = event => {
-  event.preventDefault();
-  this.props.onSubmit(this.state)
-  this.reset();
-}
-reset = () => {
+  state = { ...initinalState }
+  
+  handleSubmit = (e) => {
+        e.preventDefault();
+        const {onSubmit} = this.props;
+         onSubmit({...this.state});
+        this.reset();
+        
+    }
+
+    reset = () => {
   this.setState({
     name: '',
     number: '',
   })
 }
+
+   handleChange = ({ target }) => {
+        const { name, value } = target;
+        this.setState({
+            [name]: value
+        })
+    }
+
   render() {
+        const {handleChange, handleSubmit} = this;
+        const {name, number} = this.state;
     return (
-      <form  onSubmit={this.contactSubmit}>
+      <form  onSubmit={handleSubmit}>
         <label className={styles.labelForm}>
           Name{' '}
           <input className={styles.imputForm}
             type="text"
             name="name"
-            value={this.state.name}
-            onChange={this.changeContact}
+            value={name}
+            onChange={handleChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -43,8 +51,8 @@ reset = () => {
           <input className={styles.imputFormTel}
             type="tel"
             name="number"
-            value={this.state.number}
-            onChange={this.changeContact}
+            value={number}
+            onChange={handleChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
@@ -60,10 +68,5 @@ export default GetContactForm;
 
 
 GetContactForm.propTypes = {
-  name: PropTypes.string,
-  number: PropTypes.string,
-  changeContact: PropTypes.func,
-  contactSubmit: PropTypes.func,
-  reset: PropTypes.func,
-  render: PropTypes.func,
-};
+    onSubmit: PropTypes.func.isRequired,
+}

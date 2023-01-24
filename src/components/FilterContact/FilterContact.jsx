@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import styles from "../FilterContact/filterContact.module.css";
 
-const FilterContact = ({ value, onChange }) => {
+const FilterContact = ({ handleChange}) => {
   return (
     <label className={styles.labelFilter}>
       Find contacts by name{' '}
-      <input className={styles.inputFilter} type="text" value={value} onChange={onChange} />
+      <input className={styles.inputFilter} name="filter" onChange={handleChange} placeholder="Filter contacts"/>
     </label>
   );
 };
@@ -13,7 +13,6 @@ const FilterContact = ({ value, onChange }) => {
 export default FilterContact;
 
 FilterContact.propTypes = {
-  value: PropTypes.string,
-  onChengeFilter: PropTypes.func,
-};
+    handleChange: PropTypes.func.isRequired,
+}
 
