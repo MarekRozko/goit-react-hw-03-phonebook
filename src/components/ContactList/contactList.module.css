@@ -5,9 +5,13 @@
     list-style: none;
     font-weight: 500;
     margin-bottom: 15px;
+    border: 2px solid rgb(94, 89, 90);
+    padding: 8px;
+    margin-right: 50px;
+    border-radius: 4px;
 }
 .buttonItem{ 
-    margin-right: 150px;   
+    margin-right: 20px;   
     font-size: 16px;
     background-color: red;
     border-radius: 4px;
