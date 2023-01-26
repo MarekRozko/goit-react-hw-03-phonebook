@@ -71,10 +71,9 @@ import styles from "../components/app.module.css";
     }
    
    componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts?.length) {
+      this.setState({ contacts});
     }
   }
 
